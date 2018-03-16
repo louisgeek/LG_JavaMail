@@ -34,14 +34,15 @@ public class MainActivity extends AppCompatActivity {
                     public void run() {
 
                         //
+                        //腾讯 QQ 邮箱发 email
                         IEmailFactory tencentEmailFactory = new TencentEmailFactory();
                         try {
-                            tencentEmailFactory.getProtocolSmtp().sendHtml("test_163_email", "test_163_email 内容", new Address[]{new InternetAddress(toEmail)});
+                            tencentEmailFactory.getProtocolSmtp().sendHtml("test_qq_email", "test_qq_email 内容", new Address[]{new InternetAddress(toEmail)});
 
                         } catch (AddressException e) {
                             e.printStackTrace();
                         }
-                        //
+                        //网易 163 邮箱发 email
                         File filePath = new File(getFilesDir() + "temp" + File.separator);
                         if (!filePath.exists()) {
                             filePath.mkdirs();
@@ -56,8 +57,9 @@ public class MainActivity extends AppCompatActivity {
                             fileOutputStream.close();
                             //
                             IEmailFactory neteaseEmailFactory = new NeteaseEmailFactory();
-                            neteaseEmailFactory.getProtocolSmtp().sendHtmlWithFile("test_qq_email", "test_qq_email 内容", new File[]{file}, new Address[]{new InternetAddress(toEmail)});
-                            //## neteaseEmailFactory.getProtocolSmtp().sendHtmlWithImageAndFile("test_qq_email", "test_qq_email 内容",new File[]{imageFile}, new File[]{file}, new Address[]{new InternetAddress(toEmail)});
+                            //带附件
+                            neteaseEmailFactory.getProtocolSmtp().sendHtmlWithFile("test_163_email", "test_163_email 内容", new File[]{file}, new Address[]{new InternetAddress(toEmail)});
+                            // 图文 带附件                    //neteaseEmailFactory.getProtocolSmtp().sendHtmlWithImageAndFile("test_163_email", "test_163_email 内容",new File[]{imageFile}, new File[]{file}, new Address[]{new InternetAddress(toEmail)});
                         } catch (IOException e) {
                             e.printStackTrace();
                         } catch (AddressException e) {
@@ -67,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 });
+
 
                 //
                 Toast.makeText(MainActivity.this, "你已经点击！", Toast.LENGTH_SHORT).show();

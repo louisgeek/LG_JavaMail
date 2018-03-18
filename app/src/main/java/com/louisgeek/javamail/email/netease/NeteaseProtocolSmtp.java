@@ -1,8 +1,8 @@
 package com.louisgeek.javamail.email.netease;
 
 
-import com.louisgeek.javamail.email.JavaEmailHostConfig;
-import com.louisgeek.javamail.email.JavaEmailInfoConfig;
+import com.louisgeek.javamail.email.EmailProtocol;
+import com.louisgeek.javamail.email.EmailService;
 import com.louisgeek.javamail.email.abstracts.AbstractProtocolSmtp;
 
 /**
@@ -10,19 +10,16 @@ import com.louisgeek.javamail.email.abstracts.AbstractProtocolSmtp;
  */
 
 public class NeteaseProtocolSmtp extends AbstractProtocolSmtp {
-    private static final String TAG = "NeteaseProtocolSmtp";
-
     private static final String MAIL_HOST = "smtp.163.com";
     private static final int MAIL_HOST_PORT = 25;
     private static final int MAIL_HOST_PORT_SSL = 465;// 465 / 994
 
-    public NeteaseProtocolSmtp(JavaEmailInfoConfig javaEmailInfoConfig) {
-        super(javaEmailInfoConfig);
+    public NeteaseProtocolSmtp(EmailService emailService) {
+        super(emailService);
     }
 
-
     @Override
-    protected JavaEmailHostConfig setupHostConfig() {
-        return new JavaEmailHostConfig(MAIL_HOST,MAIL_HOST_PORT,MAIL_HOST_PORT_SSL);
+    public EmailProtocol setupEmailProtocol() {
+        return EmailProtocol.create(MAIL_HOST, MAIL_HOST_PORT, MAIL_HOST_PORT_SSL);
     }
 }

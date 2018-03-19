@@ -17,10 +17,8 @@ public class NeteaseEmailFactory implements IEmailFactory {
     //发送方姓名
     private static final String FROM_NAME = "louisgeek_netease";
 
-
     @Override
     public AbstractProtocolSmtp getProtocolSmtp() {
         return new NeteaseProtocolSmtp(EmailService.create(USER_NAME, AUTH_CODE, FROM_EMAIL, FROM_NAME));
     }
-
 }

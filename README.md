@@ -1,12 +1,34 @@
-使用方法：
+
+
+Step 1. Add the JitPack repository to your build file
+
+Add it in your root build.gradle at the end of repositories:
 
 ```groovy
-  implementation 'com.sun.mail:android-mail:1.6.0'
-  implementation 'com.sun.mail:android-activation:1.6.0'
+ allprojects {
+ repositories {
+    jcenter()
+    maven { url "https://jitpack.io" }
+ }
+}
 ```
 
 
+
+Step 2. Add the dependency [![img](https://jitpack.io/v/louisgeek/LouisJavaMail.svg)](https://jitpack.io/#louisgeek/LouisJavaMail)
+
+```
+dependencies {
+	        compile 'com.github.louisgeek:LouisJavaMail:x.x.x'
+	}
+```
+
+
+
+使用方法：
+
 1 继承 AbstractProtocolSmtp 配置邮箱Smtp服务信息
+
 ```java
 public class NeteaseProtocolSmtp extends AbstractProtocolSmtp {
     private static final String MAIL_HOST = "smtp.163.com";

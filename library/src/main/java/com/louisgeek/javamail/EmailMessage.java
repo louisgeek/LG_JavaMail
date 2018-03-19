@@ -1,4 +1,4 @@
-package com.louisgeek.javamail.email;
+package com.louisgeek.javamail;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -106,7 +106,7 @@ public class EmailMessage {
             try {
                 fromAddress = new InternetAddress(val);
             } catch (AddressException e) {
-                e.printStackTrace();
+                MyLog.e(e.getMessage());
             }
             return this;
         }
@@ -163,7 +163,7 @@ public class EmailMessage {
                     Address address = new InternetAddress(val);
                     toAddresses.add(address);
                 } catch (AddressException e) {
-                    e.printStackTrace();
+                    MyLog.e(e.getMessage());
                 }
             }
             return this;
@@ -222,7 +222,7 @@ public class EmailMessage {
                     Address address = new InternetAddress(val);
                     ccAddresses.add(address);
                 } catch (AddressException e) {
-                    e.printStackTrace();
+                    MyLog.e(e.getMessage());
                 }
             }
             return this;
@@ -281,7 +281,7 @@ public class EmailMessage {
                     Address address = new InternetAddress(val);
                     bccAddresses.add(address);
                 } catch (AddressException e) {
-                    e.printStackTrace();
+                    MyLog.e(e.getMessage());
                 }
             }
             return this;

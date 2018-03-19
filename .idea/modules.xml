@@ -6,6 +6,7 @@
       <module fileurl="file://D:\LouisGit\study2\LouisJavaMail\LouisJavaMail.iml" filepath="D:\LouisGit\study2\LouisJavaMail\LouisJavaMail.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://D:\LouisGit\study2\LouisJavaMail\app\app.iml" filepath="D:\LouisGit\study2\LouisJavaMail\app\app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
     </modules>
   </component>
 </project>

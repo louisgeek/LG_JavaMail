@@ -1,7 +1,7 @@
-package com.louisgeek.javamail.email.interfaces;
+package com.louisgeek.javamail.interfaces;
 
 
-import com.louisgeek.javamail.email.abstracts.AbstractProtocolSmtp;
+import com.louisgeek.javamail.abstracts.AbstractProtocolSmtp;
 
 /**
  * Created by classichu on 2018/3/14.

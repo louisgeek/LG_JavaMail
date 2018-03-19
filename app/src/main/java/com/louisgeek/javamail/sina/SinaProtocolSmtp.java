@@ -1,8 +1,9 @@
-package com.louisgeek.javamail.email.sina;
+package com.louisgeek.javamail.sina;
 
-import com.louisgeek.javamail.email.EmailProtocol;
-import com.louisgeek.javamail.email.EmailService;
-import com.louisgeek.javamail.email.abstracts.AbstractProtocolSmtp;
+
+import com.louisgeek.javamail.EmailProtocol;
+import com.louisgeek.javamail.EmailService;
+import com.louisgeek.javamail.abstracts.AbstractProtocolSmtp;
 
 /**
  * Created by louisgeek on 2018/3/19.

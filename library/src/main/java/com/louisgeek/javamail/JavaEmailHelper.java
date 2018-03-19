@@ -1,7 +1,6 @@
-package com.louisgeek.javamail.email;
+package com.louisgeek.javamail;
 
 import android.text.TextUtils;
-
 
 import java.io.UnsupportedEncodingException;
 import java.util.regex.Matcher;
@@ -27,7 +26,7 @@ public class JavaEmailHelper {
         try {
             return new InternetAddress(address);
         } catch (AddressException e) {
-            e.printStackTrace();
+            MyLog.e(e.getMessage());
         }
         return null;
     }
@@ -37,7 +36,7 @@ public class JavaEmailHelper {
         try {
             return new InternetAddress(address, name, "utf-8");
         } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+            MyLog.e(e.getMessage());
         }
 
         return null;

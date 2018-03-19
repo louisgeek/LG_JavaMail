@@ -1,8 +1,8 @@
-package com.louisgeek.javamail.email.sina;
+package com.louisgeek.javamail.sina;
 
-import com.louisgeek.javamail.email.EmailService;
-import com.louisgeek.javamail.email.abstracts.AbstractProtocolSmtp;
-import com.louisgeek.javamail.email.interfaces.IEmailFactory;
+import com.louisgeek.javamail.EmailService;
+import com.louisgeek.javamail.abstracts.AbstractProtocolSmtp;
+import com.louisgeek.javamail.interfaces.IEmailFactory;
 
 /**
  * Created by louisgeek on 2018/3/19.
@@ -10,8 +10,7 @@ import com.louisgeek.javamail.email.interfaces.IEmailFactory;
 
 public class SinaEmailFactory implements IEmailFactory {
     private static final String USER_NAME = "louisgeek@sina.com";
-    //报 535 错误 更改QQ密码以及独立密码会触发授权码过期，需要重新获取新的授权码登录。
-    private static final String AUTH_CODE = "zfq69@wb";//qq邮箱 授权码
+    private static final String AUTH_CODE = "xxx";//密码
     //发送方的邮箱
     private static final String FROM_EMAIL = "louisgeek@sina.com";
     //发送方姓名

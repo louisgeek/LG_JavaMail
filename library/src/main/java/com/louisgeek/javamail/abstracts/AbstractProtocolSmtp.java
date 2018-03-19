@@ -1,12 +1,12 @@
-package com.louisgeek.javamail.email.abstracts;
+package com.louisgeek.javamail.abstracts;
 
 import android.text.TextUtils;
 
-import com.louisgeek.javamail.email.EmailMessage;
-import com.louisgeek.javamail.email.EmailProtocol;
-import com.louisgeek.javamail.email.EmailService;
-import com.louisgeek.javamail.email.MyLog;
-import com.louisgeek.javamail.email.JavaEmailHelper;
+import com.louisgeek.javamail.EmailMessage;
+import com.louisgeek.javamail.EmailProtocol;
+import com.louisgeek.javamail.EmailService;
+import com.louisgeek.javamail.JavaEmailHelper;
+import com.louisgeek.javamail.MyLog;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
@@ -34,7 +34,7 @@ import javax.mail.internet.MimeUtility;
 /**
  * Created by classichu on 2018/3/14.
  * <p>
- * Smtp 协议
+ * Smtp 协议 Abstract
  */
 
 public abstract class AbstractProtocolSmtp {
@@ -113,7 +113,7 @@ public abstract class AbstractProtocolSmtp {
                     mUserAddress = JavaEmailHelper.createAddressAndName(mFromEmail, mFromName);
                 }
             } catch (AddressException e) {
-                e.printStackTrace();
+                MyLog.e(e.getMessage());
             }
         }
         if (mUserAddress == null) {

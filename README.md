@@ -14,7 +14,7 @@
                             tencentEmailFactory.getProtocolSmtp().sendHtml("test_qq_email", "test_qq_email 内容", new Address[]{new InternetAddress(toEmail)});
 
                         } catch (AddressException e) {
-                            e.printStackTrace();
+                                  MyLog.e(e.getMessage());
                         }
                     //网易 163 邮箱发 email
                         File filePath = new File(getFilesDir() + "temp" + File.separator);
@@ -35,9 +35,9 @@
                             neteaseEmailFactory.getProtocolSmtp().sendHtmlWithFile("test_163_email", "test_163_email 内容", new File[]{file}, new Address[]{new InternetAddress(toEmail)});
        // 图文 带附件                    //neteaseEmailFactory.getProtocolSmtp().sendHtmlWithImageAndFile("test_163_email", "test_163_email 内容",new File[]{imageFile}, new File[]{file}, new Address[]{new InternetAddress(toEmail)});
                         } catch (IOException e) {
-                            e.printStackTrace();
+                                MyLog.e(e.getMessage());
                         } catch (AddressException e) {
-                            e.printStackTrace();
+                                MyLog.e(e.getMessage());
                         }
 
 

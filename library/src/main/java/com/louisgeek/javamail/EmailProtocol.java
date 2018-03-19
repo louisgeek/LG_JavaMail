@@ -1,4 +1,4 @@
-package com.louisgeek.javamail.email;
+package com.louisgeek.javamail;
 
 /**
  * Created by louisgeek on 2018/3/18.

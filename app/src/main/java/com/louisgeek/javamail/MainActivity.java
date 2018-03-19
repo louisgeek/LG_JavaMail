@@ -6,11 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
-import com.louisgeek.javamail.email.EmailMessage;
-import com.louisgeek.javamail.email.interfaces.IEmailFactory;
-import com.louisgeek.javamail.email.netease.NeteaseEmailFactory;
-import com.louisgeek.javamail.email.sina.SinaEmailFactory;
-import com.louisgeek.javamail.email.tencent.TencentEmailFactory;
+import com.louisgeek.javamail.interfaces.IEmailFactory;
+import com.louisgeek.javamail.microsoft.OutlookEmailFactory;
+import com.louisgeek.javamail.netease.NeteaseEmailFactory;
+import com.louisgeek.javamail.sina.SinaEmailFactory;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -22,18 +21,12 @@ import javax.mail.Address;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 
+
 public class MainActivity extends AppCompatActivity {
     private String toEmail = "louisgeek@126.com";
     private String ccEmail = "louisgeek@163.com";
     private String bccEmail = "louisgeek@qq.com";
 
-    private static final String USER_NAME = "xxx@qq.com";
-    //报 535 错误 更改QQ密码以及独立密码会触发授权码过期，需要重新获取新的授权码登录。
-    private static final String AUTH_CODE = "xxx";//qq邮箱 授权码
-    //发送方的邮箱
-    private static final String FROM_EMAIL = "xxx@qq.com";
-    //发送方姓名
-    private static final String FROM_NAME = "xxx";
 
     private ExecutorService executorService = Executors.newFixedThreadPool(2);
 
@@ -51,36 +44,35 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
 
-                        //
-                        //腾讯 QQ 邮箱发 email
-                        IEmailFactory tencentEmailFactory = new TencentEmailFactory();
+
+                        IEmailFactory neteaseEmailFactory = new NeteaseEmailFactory();
                         try {
                             EmailMessage emailMessage = EmailMessage.newBuilder()
-                                    .setTitle("test_qq_email")
-                                    .setText("test_qq_email text")
-                                    .setContent("test_qq_email 内容")
-                                    .setCCAddresses(new Address[]{new InternetAddress(ccEmail)})
-                                    .setBCCAddresses(new Address[]{new InternetAddress(bccEmail)})
+                                    .setTitle("杭船业软件有限公司")
+                                    .setText("杭船业软件有限公司1")
+                                    .setContent("杭船业软件有限公司2")
                                     .setTOAddresses(new Address[]{new InternetAddress(toEmail)})
                                     .build();
 
-                            tencentEmailFactory.getProtocolSmtp().send(emailMessage);
+                            neteaseEmailFactory.getProtocolSmtp().send(emailMessage);
 
 
                             EmailMessage emailMessage2 = EmailMessage.newBuilder()
-                                    .setTitle("test_qq_email")
-                                    .setText("test_qq_email text 回执")
-                                    .setContent("test_qq_email 内容 回执")
+                                    .setTitle("杭船业软件有限公司回执")
+                                    .setText("杭船业软件有限公司1 回执")
+                                    .setContent("杭船业软件有限公司2 回执")
+                                    .setCCAddresses(new Address[]{new InternetAddress(ccEmail)})
+                                    .setBCCAddresses(new Address[]{new InternetAddress(bccEmail)})
                                     .setTOAddresses(new Address[]{new InternetAddress(toEmail)})
                                     .setReadReceipt(true)
                                     .build();
 
-                            tencentEmailFactory.getProtocolSmtp().send(emailMessage2);
+                            neteaseEmailFactory.getProtocolSmtp().send(emailMessage2);
                         } catch (AddressException e) {
-                            e.printStackTrace();
+                            MyLog.e(e.getMessage());
                         }
                         //网易 163 邮箱发 email
-                        File imagePath = new File(Environment.getExternalStorageDirectory() + File.separator + "temp" + File.separator + "homepage-newlogo.png");
+                        File imagePath = new File(Environment.getExternalStorageDirectory() + File.separator + "temp" + File.separator + "zfq.jpg");
                         //
                         File filePath = new File(getFilesDir() + File.separator + "temp" + File.separator);
                         if (!filePath.exists()) {
@@ -95,8 +87,6 @@ public class MainActivity extends AppCompatActivity {
                             fileOutputStream.write("test_email content 中文".getBytes("utf-8"));
                             fileOutputStream.close();
                             //
-                            IEmailFactory neteaseEmailFactory = new NeteaseEmailFactory();
-                            //
                             EmailMessage emailMessageWithFile = EmailMessage.newBuilder()
                                     .setTitle("test_163_email")
                                     .setText("test_163_email text")
@@ -106,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
                                     .build();
 
                             //带附件
-                            neteaseEmailFactory.getProtocolSmtp().send(emailMessageWithFile);
+                            //neteaseEmailFactory.getProtocolSmtp().send(emailMessageWithFile);
 
 
                             EmailMessage emailMessageWithImage = EmailMessage.newBuilder()
@@ -118,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                                     .build();
 
                             // 图文
-                            neteaseEmailFactory.getProtocolSmtp().send(emailMessageWithImage);
+                            // neteaseEmailFactory.getProtocolSmtp().send(emailMessageWithImage);
 
                             EmailMessage emailMessageWithImageAndFile = EmailMessage.newBuilder()
                                     .setTitle("test_163_email")
@@ -130,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
                                     .build();
 
                             // 图文 带附件
-                            neteaseEmailFactory.getProtocolSmtp().send(emailMessageWithImageAndFile);
+                            //neteaseEmailFactory.getProtocolSmtp().send(emailMessageWithImageAndFile);
 
 
                             //
@@ -143,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
                                     .setTOAddresses(new Address[]{new InternetAddress(toEmail)})
                                     .build();
 
-                            sinaEmailFactory.getProtocolSmtp().send(emailMessageS);
+                            // sinaEmailFactory.getProtocolSmtp().send(emailMessageS);
 
 
                             EmailMessage emailMessageSWithImage = EmailMessage.newBuilder()
@@ -153,12 +143,24 @@ public class MainActivity extends AppCompatActivity {
                                     .setImageFiles(new File[]{imagePath})
                                     .setTOAddresses(new Address[]{new InternetAddress(toEmail)})
                                     .build();
-                            sinaEmailFactory.getProtocolSmtp().send(emailMessageSWithImage);
+                            //sinaEmailFactory.getProtocolSmtp().send(emailMessageSWithImage);
+
+
+                            IEmailFactory outlookEmailFactory = new OutlookEmailFactory();
+                            EmailMessage emailMessageSWithImage55 = EmailMessage.newBuilder()
+                                    .setTitle("test_out_email")
+                                    .setText("test_out_email text")
+                                    .setContent("test_out_email 图文 <img src='cid:" + imagePath.getName() + "'/>")
+                                    .setImageFiles(new File[]{imagePath})
+                                    .setTOAddresses(new Address[]{new InternetAddress(toEmail)})
+                                    .build();
+                            //outlookEmailFactory.getProtocolSmtp().send(emailMessageSWithImage55);
+
 
                         } catch (IOException e) {
-                            e.printStackTrace();
+                            MyLog.e(e.getMessage());
                         } catch (AddressException e) {
-                            e.printStackTrace();
+                            MyLog.e(e.getMessage());
                         }
 
 
@@ -167,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 //
-                Toast.makeText(MainActivity.this, "你已经点击！", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "点击成功！", Toast.LENGTH_SHORT).show();
 
             }
         });

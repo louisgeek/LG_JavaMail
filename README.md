@@ -70,9 +70,9 @@ public class NeteaseEmailFactory implements IEmailFactory {
  IEmailFactory neteaseEmailFactory = new NeteaseEmailFactory();
                         try {
                             EmailMessage emailMessage = EmailMessage.newBuilder()
-                                    .setTitle("杭船业软件有限公司")
-                                    .setText("杭船业软件有限公司1")
-                                    .setContent("杭船业软件有限公司2")
+                                    .setTitle("哇陈搜有限公司")
+                                    .setText("哇陈搜有限公司1")
+                                    .setContent("哇陈搜有限公司2")
                                     .setTOAddresses(new Address[]{new InternetAddress(toEmail)})
                                     .build();
 
